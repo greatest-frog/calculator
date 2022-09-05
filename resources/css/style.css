@@ -30,6 +30,10 @@ main {
     justify-content: center;
 }
 
+button {
+    font-size: 20px;
+}
+
 footer {
     text-align: center;
     margin: 30px;   
