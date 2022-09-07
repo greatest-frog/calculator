@@ -31,12 +31,15 @@ number_buttons.forEach(button => {
 
 operator_buttons.forEach(button => {
     button.addEventListener('click', e => {
+        if (now_number.slice(now_number.length - 1, now_number.length) === '.'){
+            now_number = now_number.slice(0, now_number.length - 1);
+        }
         if (now_operator === '/' && (now_number === '0' || now_number === '0.')) {
             now_number = '0';
             mode = 'zero';
         }
         else if (now_operator) {
-            previous_number = operate(previous_number, now_number, now_operator).toString();
+            previous_number = operate(previous_number, now_number, now_operator).toFixed(4).toString();
         }
         else {
             previous_number = now_number;
@@ -61,11 +64,14 @@ dot.addEventListener('click', e => {
 });
 
 equal.addEventListener('click', e => {
+    if (now_number.slice(now_number.length - 1, now_number.length) === '.'){
+        now_number = now_number.slice(0, now_number.length - 1);
+    }
     let mode = now_number;
     if (now_operator === '/' && (now_number === '0' || now_number === '0.')) {
         mode = 'zero';
     }
-    else if (now_operator !== '') now_number = operate(previous_number, now_number, now_operator);
+    else if (now_operator !== '') now_number = operate(previous_number, now_number, now_operator).toFixed(4).toString();
     if (Number(now_number) !== Math.round(Number(now_number))) {
         dotIn = true;
     }
